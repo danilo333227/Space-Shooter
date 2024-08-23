@@ -38,6 +38,10 @@ class Player(GameSprite):
         if keys[pygame.K_d] and self.rect.x <= 620:
             self.rect.x += self.speed
 
+    def fire(self):
+        bullet = Bullet("bullet.png", self.rect.centerx, self.rect.top, 10, 15, 15)
+        bullets.add(bullet)
+
 class Enemy(GameSprite):
     def update(self):
         global lost
@@ -48,6 +52,12 @@ class Enemy(GameSprite):
             self.rect.x = random.randint(20, 460)
             self.rect.y = -40
             lost += 1
+
+class Bullet(GameSprite):
+    def update(self):
+        self.rect.y -= self.speed
+        if self.rect.y < 0:
+            self.kill()
 
 background = pygame.transform.scale(pygame.image.load('galaxy.jpg'), (WIDTH, HEIGHT))
 player = Player('rocket.png', WIDTH / 2 - 80, HEIGHT - 100, 80, 100, 10)
@@ -60,12 +70,19 @@ for i in range(1, 10):
     monster = Enemy('ufo.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
     monsters.add(monster)
 
+bullets = pygame.sprite.Group()
+
 game = True
 finish = False
 while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player.fire()
+
+
     window.blit(background, (0, 0))
     player.reset()
     player.update()
@@ -81,7 +98,9 @@ while game:
         player.reset()
         player.update()
         monsters.update()
+        bullets.update()
         monsters.draw(window)
+        bullets.draw(window)
 
     if lost > 5:
         window.blit(background, (0, 0))
