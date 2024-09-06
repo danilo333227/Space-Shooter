@@ -104,12 +104,12 @@ while game:
 
     if not finish:
         window.blit(background, (0, 0))
+        if not show_boss:
+            text_score = font.render(f'Рахунок: {score}', True, (250, 250, 250))
+            window.blit(text_score, (10, 20))
 
-        text_score = font.render(f'Рахунок: {score}', True, (250, 250, 250))
-        window.blit(text_score, (10, 20))
-
-        text_score = font.render(f'Пропущені: {lost}', True, (250, 250, 250))
-        window.blit(text_score, (10, 50))
+            text_score = font.render(f'Пропущені: {lost}', True, (250, 250, 250))
+            window.blit(text_score, (10, 50))
 
         player.reset()
         player.update()
