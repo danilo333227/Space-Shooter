@@ -134,6 +134,7 @@ while game:
         finish = True
 
     if score >= 15:
+        lost = 0
         health_boss = 15
         show_boss = True
         boss = Enemy('ufo.png', random.randint(20, 460), -40, 240, 180,1)
@@ -146,6 +147,18 @@ while game:
         window.blit(text_score, (250, 20))
         boss.update()
         boss.reset()
+
+        if lost > 0:
+            font1 = pygame.font.Font(None, 60)
+            window.blit(background, (0, 0))
+            text_lose = font1.render('Ти програв!!!', True, (255, 255, 255))
+            text = font.render('клікни для рестарту', True, (250, 250, 250))
+            window.blit(text, (230, 270))
+            window.blit(text_lose, (230, 200))
+            finish = True
+            boss.kill()
+            show_boss = False
+
         if pygame.sprite.spritecollide(boss, bullets, True):
             health_boss -= 1
 
