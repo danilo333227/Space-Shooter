@@ -124,7 +124,7 @@ while game:
         monster = Enemy('ufo.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
         monsters.add(monster)
 
-    if lost > 10 or pygame.sprite.spritecollide(player, monsters, False):
+    if lost >= 10 or pygame.sprite.spritecollide(player, monsters, False):
         font1 = pygame.font.Font(None, 60)
         window.blit(background, (0, 0))
         text_lose = font1.render('Ти програв!!!', True, (255, 255, 255))
