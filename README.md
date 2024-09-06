@@ -1,2 +1,2 @@
 # Space-Shooter
-This is spase shooter
+This is space shooter
