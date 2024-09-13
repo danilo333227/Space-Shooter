@@ -43,7 +43,7 @@ class Player(GameSprite):
             self.rect.x += self.speed
 
     def fire(self):
-        bullet = Bullet('bullet.png', self.rect.centerx, self.rect.top, 15, 20, -15)
+        bullet = Bullet('bullet_new.png', self.rect.centerx - 8, self.rect.top, 15, 30, -15)
         bullets.add(bullet)
 
 
@@ -67,7 +67,7 @@ class Bullet(GameSprite):
 
 
 background = pygame.transform.scale(pygame.image.load('galaxy.jpg'), (WIDTH, HEIGHT))
-player = Player('rocket.png', WIDTH / 2 - 80, HEIGHT - 100, 80, 100, 10)
+player = Player('rocket_new.png', WIDTH / 2 - 80, HEIGHT - 100, 110, 100, 10)
 
 monsters = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
@@ -90,7 +90,7 @@ while game:
                 player.fire()
 
         elif event.type == pygame.MOUSEBUTTONDOWN and finish:
-            player = Player('rocket.png', WIDTH / 2 - 80, HEIGHT - 100, 80, 100, 10)
+            player = Player('rocket_new.png', WIDTH / 2 - 80, HEIGHT - 100, 110, 100, 10)
 
             monsters = pygame.sprite.Group()
             bullets = pygame.sprite.Group()
@@ -175,3 +175,5 @@ while game:
 
     pygame.display.update()
     clock.tick(60)
+
+#python -m PyInstaller --onefile main.py
