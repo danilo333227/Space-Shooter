@@ -66,13 +66,13 @@ class Bullet(GameSprite):
             self.kill()
 
 
-background = pygame.transform.scale(pygame.image.load('galaxy.jpg'), (WIDTH, HEIGHT))
+background = pygame.transform.scale(pygame.image.load('Background-0.jpg'), (WIDTH, HEIGHT))
 player = Player('rocket_new.png', WIDTH / 2 - 80, HEIGHT - 100, 110, 100, 10)
 
 monsters = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 for i in range(1, 10):
-    monster = Enemy('ufo.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
+    monster = Enemy('asteroid.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
     monsters.add(monster)
 
 game = True
@@ -95,7 +95,7 @@ while game:
             monsters = pygame.sprite.Group()
             bullets = pygame.sprite.Group()
             for i in range(1, 10):
-                monster = Enemy('ufo.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 5))
+                monster = Enemy('asteroid.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 5))
                 monsters.add(monster)
             score = 0
             lost = 0
@@ -121,7 +121,7 @@ while game:
     collides = pygame.sprite.groupcollide(monsters, bullets, True, True)
     for c in collides:
         score += 1
-        monster = Enemy('ufo.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
+        monster = Enemy('asteroid.png', random.randint(20, 460), -40, 80, 50, random.randint(1, 3))
         monsters.add(monster)
 
     if lost >= 10 or pygame.sprite.spritecollide(player, monsters, False):
